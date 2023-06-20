@@ -1,0 +1,169 @@
+<html lang="en" class="h-100"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>Cover Template · Bootstrap v5.2</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/cover/">
+
+    
+
+    
+
+<link href="/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/5.2/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/5.2/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/5.2/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#712cf9">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+  <body class="d-flex h-100 text-center text-bg-dark">
+    
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="mb-auto">
+    <div>
+      <h3 class="float-md-start mb-0">AI Sums Site</h3>
+    </div>
+  </header>
+
+  <div class="position-absolute top-50 start-50 translate-middle">
+    <div class="modal-header p-5 pb-4 border-bottom-0">
+      <!-- <h1 class="modal-title fs-5" >Modal title</h1> -->
+      <h1 class="fw-bold mb-0 fs-2">Enter your numbers</h1>
+    </div>
+<!--<form id="addition-form">
+    <label for="number1">Число 1:</label>
+    <input type="number" id="number1" name="number1" required>
+    <br>
+    <label for="number2">Число 2:</label>
+    <input type="number" id="number2" name="number2" required>
+    <br>
+    <button type="submit">Сложить</button>
+  </form>
+  <input type="text" id="result" readonly>-->
+    <div class="modal-body p-5 pt-0">
+      <form id="addition-form">
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control rounded-3" id="number1" placeholder="Number" required>
+          <label for="floatingInput">Number</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control rounded-3" id="number2" placeholder="Number" required>
+          <label for="floatingPassword">Number</label>
+        </div>
+        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sum</button>
+        <!-- <div class="form-floating mb-3">
+            <input type="text" class="form-control rounded-3" id="result" placeholder="Password">
+            <label for="floatingPassword">Result</label>
+          </div> -->
+        <hr class="my-4">
+      </form>
+      <input type="text" class="form-control rounded-3" id="result" placeholder="Result" readonly>
+    </div>
+  </div>
+
+  <footer class="mt-auto text-white-50">
+    <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+  </footer>
+</div>
+
+  <script>
+    // Обработчик отправки формы
+    document.getElementById('addition-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Предотвращаем отправку формы
+      
+      var number1 = parseFloat(document.getElementById('number1').value);
+      var number2 = parseFloat(document.getElementById('number2').value);
+      
+      // Создаем объект для отправки данных в формате JSON
+      var data = {
+        numbers: [number1, number2]
+      };
+      
+      // Отправка POST-запроса на маршрут /add
+      fetch('http://localhost:5000/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        document.getElementById('result').value = data.result;
+      })
+      .catch(function(error) {
+        console.log('Ошибка:', error);
+      });
+    });
+  </script>
+    
+  
+
+</body></html>

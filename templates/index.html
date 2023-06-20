@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <head>
+  </head>
+<body>
+  <h1>Сложение чисел</h1>
+  
+  <form id="addition-form">
+    <label for="number1">Число 1:</label>
+    <input type="number" id="number1" name="number1" required>
+    <br>
+    <label for="number2">Число 2:</label>
+    <input type="number" id="number2" name="number2" required>
+    <br>
+    <button type="submit">Сложить</button>
+  </form>
+  <input type="text" id="result" readonly>
+  <script>
+    // Обработчик отправки формы
+    document.getElementById('addition-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Предотвращаем отправку формы
+      
+      var number1 = parseFloat(document.getElementById('number1').value);
+      var number2 = parseFloat(document.getElementById('number2').value);
+      
+      // Создаем объект для отправки данных в формате JSON
+      var data = {
+        numbers: [number1, number2]
+      };
+      
+      // Отправка POST-запроса на маршрут /add
+      fetch('http://localhost:5000/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        document.getElementById('result').value = data.result;
+      })
+      .catch(function(error) {
+        console.log('Ошибка:', error);
+      });
+    });
+  </script>
+</body>
+</html>
